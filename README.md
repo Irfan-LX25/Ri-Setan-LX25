@@ -1,4 +1,4 @@
-# Risetan-LX25
+# Ri-Setan-LX25
 LX25 PROGRAMMING RESEARCH AND DEVELOPMENT
 
 Dokumentasi Riset Program LX24: https://github.com/HabibMuhammad05/KRAI-ESPNOW-DS2-CONTROLLER-PROJECT
