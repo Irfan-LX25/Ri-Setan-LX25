@@ -29,7 +29,7 @@ https://github.com/HabibMuhammad05/KRAI-ESPNOW-DS2-CONTROLLER-PROJECT
 
 ---
 
-## 📙 Dokumentasi Riset Program LX25 (Repository Ini)
+## 📙 Dokumentasi Riset Program LX25
 
 🔗 **Repository Utama LX25**  
 https://github.com/Irfan-LX25/Ri-Setan-LX25  
