@@ -50,7 +50,7 @@ graph TD
     FL[FL Motor]
     FR[FR Motor]
     RL[RL Motor]
-    RR[R R Motor]
+    RR[RR Motor]
 
     SENS[Sensor IMU, Limit, Encoder ]
     ACT[Actuator Servo, Solenoid ]
@@ -58,8 +58,8 @@ graph TD
     DS2 -->|ESP-NOW| RX
     RX -->|Serial| MEGA
 
-    MEGA -->|I2C| STM1
-    MEGA -->|I2C| STM2
+    RX -->|I2C| STM1
+    RX -->|I2C| STM2
 
     STM1 --> FL
     STM1 --> RL
