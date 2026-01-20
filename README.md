@@ -6,11 +6,6 @@
 
 ### LX25 PROGRAMMING RESEARCH AND DEVELOPMENT
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Irfan-LX25/Ri-Setan-LX25)
-![GitHub last commit](https://img.shields.io/github/last-commit/Irfan-LX25/Ri-Setan-LX25)
-![Robotics](https://img.shields.io/badge/Robotics-Research-blue)
-![Embedded](https://img.shields.io/badge/Embedded-System-green)
-
 ![Repo Size](https://img.shields.io/github/repo-size/Irfan-LX25/Ri-Setan-LX25?style=for-the-badge&logo=github&color=blueviolet)
 ![Last Commit](https://img.shields.io/github/last-commit/Irfan-LX25/Ri-Setan-LX25?style=for-the-badge&logo=git&color=orange)
 ![Language](https://img.shields.io/badge/Language-C%2B%2B%20%7C%20Python-blue?style=for-the-badge&logo=c%2B%2B)
