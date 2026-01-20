@@ -35,17 +35,21 @@ https://github.com/HabibMuhammad05/KRAI-ESPNOW-DS2-CONTROLLER-PROJECT
 https://github.com/Irfan-LX25/Ri-Setan-LX25
 
 **Deskripsi Singkat:**
-flowchart LR
-    DS2[DS2 Controller ESP32] 
-    -->|ESP-NOW| RX[Receiver ESP32]
+graph TD
+    DS2[DS2 Controller<br/>ESP32]
+    RX[Receiver<br/>ESP32]
+    MEGA[Arduino Mega]
+    STM1[STM32 #1]
+    STM2[STM32 #2]
+    WD[4WD Drive System]
 
-    RX -->|Serial| Mega[Arduino Mega]
+    DS2 -->|ESP-NOW| RX
+    RX -->|Serial| MEGA
+    RX -->|I2C| STM1
+    RX -->|I2C| STM2
+    STM1 --> WD
+    STM2 --> WD
 
-    RX -->|I2C| STM1[STM32 #1]
-    RX -->|I2C| STM2[STM32 #2]
-
-    STM1 --> WD1[4WD Motor Group A]
-    STM2 --> WD2[4WD Motor Group B]
 
 ### 📂 Struktur Folder & Penjelasan
 
