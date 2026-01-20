@@ -34,7 +34,50 @@ https://github.com/HabibMuhammad05/KRAI-ESPNOW-DS2-CONTROLLER-PROJECT
 🔗 **Repository Utama LX25**  
 https://github.com/Irfan-LX25/Ri-Setan-LX25
 
-**Deskripsi & Alur program:**
+**Deskripsi & Alur program :**
+
+#### 🔹 R1 – Manual Control (DS2 Controller ESP-NOW)
+
+```mermaid
+graph TD
+    DS2[DS2 Controller<br/>ESP32]
+    RX[Receiver<br/>ESP32]
+    MEGA[Arduino Mega]
+
+    STM1[STM32 Addr1]
+    STM2[STM32 Addr2]
+
+    FL[FL Motor]
+    FR[FR Motor]
+    RL[RL Motor]
+    RR[RR Motor]
+
+    SENS[Sensor IMU, Limit, Encoder ]
+    ACT[Actuator Servo, Solenoid ]
+
+    DS2 -->|ESP-NOW| RX
+    RX -->|Serial| MEGA
+
+    RX -->|I2C| STM1
+    RX -->|I2C| STM2
+
+    STM1 --> FL
+    STM1 --> RL
+
+    STM2 --> FR
+    STM2 --> RR
+
+    MEGA -->|GPIO / I2C / SPI| SENS
+    MEGA -->|GPIO / PWM| ACT
+
+```
+### 📂 Struktur Folder & Penjelasan
+
+- **LX26_R1_JoyStick_Controller_V1.0**  
+  Versi awal pengembangan joystick controller sebagai antarmuka utama operator robot.
+
+- **LX26_R1_JoyStick_Controller_V1.1**  
+  Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
 
 #### 🔹 R1 – Manual Control (DS2 Controller)
 
@@ -79,13 +122,48 @@ graph TD
 - **LX26_R1_JoyStick_Controller_V1.1**  
   Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
 
-- **LX26_R2_DualMode_PnP_V1.0**  
-  Implementasi sistem **dual-mode Plug & Play** untuk fleksibilitas operasi robot di lapangan.
+#### 🔹 R1 – Manual Control (DS2 Controller)
 
-- **SwerveDrive**  
-  Modul pengendalian **swerve drive** untuk robot omni-directional dengan kontrol arah dan kecepatan.
+```mermaid
+graph TD
+    DS2[DS2 Controller<br/>ESP32]
+    RX[Receiver<br/>ESP32]
+    MEGA[Arduino Mega]
 
-- **Tuning_PID_DC_MOTOR**  
-  Riset dan pengujian **PID control motor DC** menggunakan feedback encoder untuk mendapatkan respon optimal.
+    STM1[STM32 Addr1]
+    STM2[STM32 Addr2]
+
+    FL[FL Motor]
+    FR[FR Motor]
+    RL[RL Motor]
+    RR[RR Motor]
+
+    SENS[Sensor IMU, Limit, Encoder ]
+    ACT[Actuator Servo, Solenoid ]
+
+    DS2 -->|ESP-NOW| RX
+    RX -->|Serial| MEGA
+
+    RX -->|I2C| STM1
+    RX -->|I2C| STM2
+
+    STM1 --> FL
+    STM1 --> RL
+
+    STM2 --> FR
+    STM2 --> RR
+
+    MEGA -->|GPIO / I2C / SPI| SENS
+    MEGA -->|GPIO / PWM| ACT
+
+```
+### 📂 Struktur Folder & Penjelasan
+
+- **LX26_R1_JoyStick_Controller_V1.0**  
+  Versi awal pengembangan joystick controller sebagai antarmuka utama operator robot.
+
+- **LX26_R1_JoyStick_Controller_V1.1**  
+  Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
+
 
 Repositori ini digunakan sebagai **basis riset internal dan pengembangan lanjutan** sistem LX25.
