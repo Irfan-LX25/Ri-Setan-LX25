@@ -127,13 +127,13 @@ graph TD
 - **LX26_R1_JoyStick_Controller_V1.1**  
   Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
 
-#### 🔹 R1 – Manual Control (DS2 Controller)
+#### 🔹 R2 – Autonomous PnP
 
 ```mermaid
 graph TD
-    DS2[DS2 Controller<br/>ESP32]
-    RX[Receiver<br/>ESP32]
+    RPI[Raspberry Pi 3]
     MEGA[Arduino Mega]
+    CAM[ESP32-CAM]
 
     STM1[STM32 Addr1]
     STM2[STM32 Addr2]
@@ -143,14 +143,14 @@ graph TD
     RL[RL Motor]
     RR[RR Motor]
 
-    SENS[Sensor IMU, Limit, Encoder ]
-    ACT[Actuator Servo, Solenoid ]
+    SENS[Sensor IMU, Limit, Encoder]
+    ACT[Actuator Servo, Solenoid]
 
-    DS2 -->|ESP-NOW| RX
-    RX -->|Serial| MEGA
+    CAM -->|USB Serial| RPI
+    RPI -->|USB Serial| MEGA
 
-    RX -->|I2C| STM1
-    RX -->|I2C| STM2
+    MEGA -->|I2C| STM1
+    MEGA -->|I2C| STM2
 
     STM1 --> FL
     STM1 --> RL
@@ -160,6 +160,7 @@ graph TD
 
     MEGA -->|GPIO / I2C / SPI| SENS
     MEGA -->|GPIO / PWM| ACT
+
 
 ```
 ### 📂 Struktur Folder & Penjelasan
