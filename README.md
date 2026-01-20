@@ -47,22 +47,28 @@ graph TD
     STM1[STM32 #1]
     STM2[STM32 #2]
 
-    FL[Front Left]
-    FR[Front Right]
-    RL[Rear Left]
-    RR[Rear Right]
+    FL[Front Left Motor]
+    FR[Front Right Motor]
+    RL[Rear Left Motor]
+    RR[Rear Right Motor]
+
+    SENS[Sensor<br/>(IMU, Limit, Encoder, dll)]
+    ACT[Actuator<br/>(Servo, Solenoid, dll)]
 
     DS2 -->|ESP-NOW| RX
     RX -->|Serial| MEGA
 
-    RX -->|I2C| STM1
-    RX -->|I2C| STM2
+    MEGA -->|I2C| STM1
+    MEGA -->|I2C| STM2
 
     STM1 --> FL
     STM1 --> RL
 
     STM2 --> FR
     STM2 --> RR
+
+    MEGA -->|GPIO / I2C / SPI| SENS
+    MEGA -->|GPIO / PWM| ACT
 
 ```
 ### 📂 Struktur Folder & Penjelasan
