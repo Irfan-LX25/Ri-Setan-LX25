@@ -35,6 +35,11 @@ https://github.com/HabibMuhammad05/KRAI-ESPNOW-DS2-CONTROLLER-PROJECT
 https://github.com/Irfan-LX25/Ri-Setan-LX25
 
 **Deskripsi Singkat:**
+### 🧩 Diagram Deskriptif Sistem LX25
+
+#### 🔹 R1 – Manual Control (DS2 Controller)
+
+```mermaid
 graph TD
     DS2[DS2 Controller<br/>ESP32]
     RX[Receiver<br/>ESP32]
@@ -49,8 +54,7 @@ graph TD
     RX -->|I2C| STM2
     STM1 --> WD
     STM2 --> WD
-
-
+```
 ### 📂 Struktur Folder & Penjelasan
 
 - **LX26_R1_JoyStick_Controller_V1.0**  
