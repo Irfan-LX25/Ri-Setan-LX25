@@ -34,8 +34,7 @@ https://github.com/HabibMuhammad05/KRAI-ESPNOW-DS2-CONTROLLER-PROJECT
 🔗 **Repository Utama LX25**  
 https://github.com/Irfan-LX25/Ri-Setan-LX25
 
-**Deskripsi Singkat:**
-### 🧩 Diagram Deskriptif Sistem LX25
+**Deskripsi & Alur program:**
 
 #### 🔹 R1 – Manual Control (DS2 Controller)
 
@@ -44,16 +43,27 @@ graph TD
     DS2[DS2 Controller<br/>ESP32]
     RX[Receiver<br/>ESP32]
     MEGA[Arduino Mega]
+
     STM1[STM32 #1]
     STM2[STM32 #2]
-    WD[4WD Drive System]
+
+    FL[Front Left]
+    FR[Front Right]
+    RL[Rear Left]
+    RR[Rear Right]
 
     DS2 -->|ESP-NOW| RX
     RX -->|Serial| MEGA
+
     RX -->|I2C| STM1
     RX -->|I2C| STM2
-    STM1 --> WD
-    STM2 --> WD
+
+    STM1 --> FL
+    STM1 --> RL
+
+    STM2 --> FR
+    STM2 --> RR
+
 ```
 ### 📂 Struktur Folder & Penjelasan
 
