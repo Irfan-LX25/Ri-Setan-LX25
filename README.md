@@ -52,8 +52,8 @@ graph TD
     RL[Rear Left Motor]
     RR[Rear Right Motor]
 
-    SENS[Sensor<br/>(IMU, Limit, Encoder, dll)]
-    ACT[Actuator<br/>(Servo, Solenoid, dll)]
+    SENS[Sensor IMU, Limit, Encoder ]
+    ACT[Actuator Servo, Solenoid ]
 
     DS2 -->|ESP-NOW| RX
     RX -->|Serial| MEGA
