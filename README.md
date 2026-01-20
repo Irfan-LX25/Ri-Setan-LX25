@@ -74,18 +74,19 @@ graph TD
 ### 📂 Struktur Folder & Penjelasan
 
 - **LX26_R1_JoyStick_Controller_V1.0**  
-  Versi awal pengembangan joystick controller sebagai antarmuka utama operator robot.
+  Versi awal dengan Mega sebagai Master I2C STM32 Slave
 
 - **LX26_R1_JoyStick_Controller_V1.1**  
-  Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
+  Revisi dengan ESP32 RX sebagai Master I2C STM32 Slve
 
-#### 🔹 R1 – Manual Control (DS2 Controller)
+#### 🔹 R2 – DualMode PnP (Manual ↔ Autonomous)
 
 ```mermaid
 graph TD
     DS2[DS2 Controller<br/>ESP32]
     RX[Receiver<br/>ESP32]
     MEGA[Arduino Mega]
+    RPI[Raspberry Pi 3B]
 
     STM1[STM32 Addr1]
     STM2[STM32 Addr2]
@@ -95,14 +96,17 @@ graph TD
     RL[RL Motor]
     RR[RR Motor]
 
-    SENS[Sensor IMU, Limit, Encoder ]
-    ACT[Actuator Servo, Solenoid ]
+    SENS[Sensor IMU, Limit, Encoder]
+    ACT[Actuator Servo, Solenoid]
 
     DS2 -->|ESP-NOW| RX
     RX -->|Serial| MEGA
 
-    RX -->|I2C| STM1
-    RX -->|I2C| STM2
+    DS2 -->|Mode Switch| RPI
+    RPI -->|USB Serial| MEGA
+
+    MEGA -->|I2C| STM1
+    MEGA -->|I2C| STM2
 
     STM1 --> FL
     STM1 --> RL
@@ -112,6 +116,7 @@ graph TD
 
     MEGA -->|GPIO / I2C / SPI| SENS
     MEGA -->|GPIO / PWM| ACT
+
 
 ```
 ### 📂 Struktur Folder & Penjelasan
