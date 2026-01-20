@@ -44,13 +44,13 @@ graph TD
     RX[Receiver<br/>ESP32]
     MEGA[Arduino Mega]
 
-    STM1[STM32 #1]
-    STM2[STM32 #2]
+    STM1[STM32 Addr1]
+    STM2[STM32 Addr2]
 
-    FL[Front Left Motor]
-    FR[Front Right Motor]
-    RL[Rear Left Motor]
-    RR[Rear Right Motor]
+    FL[FL Motor]
+    FR[FR Motor]
+    RL[RL Motor]
+    RR[R R Motor]
 
     SENS[Sensor IMU, Limit, Encoder ]
     ACT[Actuator Servo, Solenoid ]
