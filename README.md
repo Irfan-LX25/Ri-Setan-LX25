@@ -121,11 +121,7 @@ graph TD
 ```
 ### 📂 Struktur Folder & Penjelasan
 
-- **LX26_R1_JoyStick_Controller_V1.0**  
-  Versi awal pengembangan joystick controller sebagai antarmuka utama operator robot.
 
-- **LX26_R1_JoyStick_Controller_V1.1**  
-  Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
 
 #### 🔹 R2 – Autonomous PnP
 
@@ -165,11 +161,7 @@ graph TD
 ```
 ### 📂 Struktur Folder & Penjelasan
 
-- **LX26_R1_JoyStick_Controller_V1.0**  
-  Versi awal pengembangan joystick controller sebagai antarmuka utama operator robot.
-
-- **LX26_R1_JoyStick_Controller_V1.1**  
-  Penyempurnaan joystick controller dengan optimasi respons, stabilitas input, dan struktur kode.
 
 
-Repositori ini digunakan sebagai **basis riset internal dan pengembangan lanjutan** sistem LX25.
+
+
