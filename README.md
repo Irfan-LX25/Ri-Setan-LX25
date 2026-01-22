@@ -163,18 +163,18 @@ graph TD
 
 ---
 
-## 📘 Dokumentasi Riset Program LX24
--// Motor 1 (FL di Slave 1, RL di Slave 2) steering
--#define MOTOR1_PWMA PA_6
--#define MOTOR1_PWMB PA_7
--#define ENC1_A PB_7   // Timer 2 Channel 1
--#define ENC1_B PB_6  // Timer 2 Channel 2
+## PINOUT
+- // Motor 1 (FL di Slave 1, RL di Slave 2) steering
+- #define MOTOR1_PWMA PA_6
+- #define MOTOR1_PWMB PA_7
+- #define ENC1_A PB_7   // Timer 2 Channel 1
+- #define ENC1_B PB_6  // Timer 2 Channel 2
 
--// Motor 2 (FR di Slave 1, RR di Slave 2) manuver
--#define MOTOR2_PWMA PA_1
--#define MOTOR2_PWMB PA_3
--#define ENC2_A PB_9   // Timer 3 Channel 1
--#define ENC2_B PB_8   // Timer 3 Channel 2
+- // Motor 2 (FR di Slave 1, RR di Slave 2) manuver
+- #define MOTOR2_PWMA PA_1
+-  #define MOTOR2_PWMB PA_3
+- #define ENC2_A PB_9   // Timer 3 Channel 1
+- #define ENC2_B PB_8   // Timer 3 Channel 2
 
 ---
 
