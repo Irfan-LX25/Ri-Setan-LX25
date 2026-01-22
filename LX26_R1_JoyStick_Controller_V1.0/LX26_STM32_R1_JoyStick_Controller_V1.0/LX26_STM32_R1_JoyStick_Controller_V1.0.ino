@@ -14,19 +14,17 @@
 const uint8_t I2C_ADDRESS = 0x08;  // Ganti ke 0x09 untuk Slave 2
 
 // ========================================== PIN DEFINITIONS (STM32 BLUEPILL) =============================
-// Motor 1 (FL di Slave 1, RL di Slave 2)
-#define MOTOR1_PWM PA_8
-#define MOTOR1_IN1 PA_9
-#define MOTOR1_IN2 PA_10
-#define ENC1_A PA_0   // Timer 2 Channel 1
-#define ENC1_B PA_1   // Timer 2 Channel 2
+// Motor 1 (FL di Slave 1, RL di Slave 2) steering
+#define MOTOR1_PWMA PA_6
+#define MOTOR1_PWMB PA_7
+#define ENC1_A PB_7   // Timer 2 Channel 1
+#define ENC1_B PB_6  // Timer 2 Channel 2
 
-// Motor 2 (FR di Slave 1, RR di Slave 2)
-#define MOTOR2_PWM PB_0
-#define MOTOR2_IN1 PB_1
-#define MOTOR2_IN2 PB_10
-#define ENC2_A PA_6   // Timer 3 Channel 1
-#define ENC2_B PA_7   // Timer 3 Channel 2
+// Motor 2 (FR di Slave 1, RR di Slave 2) manuver
+#define MOTOR2_PWMA PA_1
+#define MOTOR2_PWMB PA_3
+#define ENC2_A PB_9   // Timer 3 Channel 1
+#define ENC2_B PB_8   // Timer 3 Channel 2
 
 // ========================================== INDIVIDUAL PID CONSTANTS =====================================
 struct MotorConfig {
