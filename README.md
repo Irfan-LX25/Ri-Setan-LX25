@@ -161,6 +161,9 @@ graph TD
 ```
 ### 📂 Struktur Folder & Penjelasan
 
+---
+
+## 📘 Dokumentasi Riset Program LX24
 -// Motor 1 (FL di Slave 1, RL di Slave 2) steering
 -#define MOTOR1_PWMA PA_6
 -#define MOTOR1_PWMB PA_7
@@ -173,5 +176,6 @@ graph TD
 -#define ENC2_A PB_9   // Timer 3 Channel 1
 -#define ENC2_B PB_8   // Timer 3 Channel 2
 
+---
 
 
