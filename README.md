@@ -177,40 +177,18 @@ graph TD
 - #define ENC2_B PB_8   // Timer 3 Channel 2
 
 ---
-| Parameter             | Simbol  | Satuan       | Nilai | | Parameter             | Simbol  | Satuan       | Nilai |
-| --------------------- | ------- | ------------ | ----- | | --------------------- | ------- | ------------ | ----- |
-| Resolusi Encoder      | PPR     | Pulses       |       |
-| PWM Deadzone (Maju)   | MinPWM+ | 0–255        |       |
-| PWM Deadzone (Mundur) | MinPWM- | 0–255        |       |
-| Max Speed (Raw)       | MaxTick | Ticks / 20ms |       |
-| Max Speed (Real)      | MaxRPM  | RPM          |       |
-| Proportional          | Kp      | Konstanta    |       |
-| Integral              | Ki      | Konstanta    |       |
-| Derivative            | Kd      | Konstanta    |       |
-| Arah Terbalik         | Dir_Inv | True / False |       |
-| Filter Encoder        | Alpha   | Konstanta    |       |
-
-| Resolusi Encoder      | PPR     | Pulses       |       |
-| PWM Deadzone (Maju)   | MinPWM+ | 0–255        |       |
-| PWM Deadzone (Mundur) | MinPWM- | 0–255        |       |
-| Max Speed (Raw)       | MaxTick | Ticks / 20ms |       |
-| Max Speed (Real)      | MaxRPM  | RPM          |       |
-| Proportional          | Kp      | Konstanta    |       |
-| Integral              | Ki      | Konstanta    |       |
-| Derivative            | Kd      | Konstanta    |       |
-| Arah Terbalik         | Dir_Inv | True / False |       |
-| Filter Encoder        | Alpha   | Konstanta    |       |
-
-| --------------------- | ------- | ------------ | ----- |
-| Resolusi Encoder      | PPR     | Pulses       |       |
-| PWM Deadzone (Maju)   | MinPWM+ | 0–255        |       |
-| PWM Deadzone (Mundur) | MinPWM- | 0–255        |       |
-| Max Speed (Raw)       | MaxTick | Ticks / 20ms |       |
-| Max Speed (Real)      | MaxRPM  | RPM          |       |
-| Proportional          | Kp      | Konstanta    |       |
-| Integral              | Ki      | Konstanta    |       |
-| Derivative            | Kd      | Konstanta    |       |
-| Arah Terbalik         | Dir_Inv | True / False |       |
-| Filter Encoder        | Alpha   | Konstanta    |       |
-
-
+Motor DC FR
++---------------------------+-----------+--------------+-------+
+| Parameter                 | Simbol    | Satuan       | Nilai |
++---------------------------+-----------+--------------+-------+
+| Resolusi Encoder          | PPR       | Pulses       |       |
+| PWM Deadzone (Maju)       | MinPWM+   | 0-255        |       |
+| PWM Deadzone (Mundur)     | MinPWM-   | 0-255        |       |
+| Max Speed (Raw)           | MaxTick   | Ticks/20ms   |       |
+| Max Speed (Real)          | MaxRPM    | RPM          |       |
+| Proportional              | Kp        | Konstanta    |       |
+| Integral                  | Ki        | Konstanta    |       |
+| Derivative                | Kd        | Konstanta    |       |
+| Arah Terbalik?            | Dir_Inv   | True/False   |       |
+| Filter Encoder            | Alpha     | Konstanta    |       |
++---------------------------+-----------+--------------+-------+
