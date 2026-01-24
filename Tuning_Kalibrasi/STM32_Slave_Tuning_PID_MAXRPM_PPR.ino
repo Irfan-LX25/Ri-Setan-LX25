@@ -7,117 +7,145 @@
 /*----------------------------------------------------V1.0-------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------------------*/
 /*------------------------------------LAST UPDATE AT 16:50:00, 23 JAN 26------------------------------------*/
-#include <Wire.h>
-#define MOTOR1_PWMA PA6
-#define MOTOR1_PWMB PA7
-volatile long encoderCount = 0;
-float input = 0, output = 0, setpoint = 0;
-float kp = 1.0, ki = 0.0, kd = 0.0; 
-float lastError = 0, integral = 0;
-unsigned long lastTime = 0;
-const int sampleTime = 20; // 20ms sampling
-struct DataPacket {
-  float rpm;    
-  long enc;     
-};
+/*
+ * STM32 SLAVE - ALL IN ONE (CALIBRATION + PID)
+ * I2C: 0x0A | SDA: PB11, SCL: PB10
+ * Encoder: TIM4 Direct Access (PB6 & PB7)
+ */
 
-DataPacket sendData;
+#include <Wire.h>
+
+// --- PINOUT ---
+#define MOTOR_A PA_6
+#define MOTOR_B PA_7
+
+// --- SETTINGS ---
+#define SLAVE_ADDR 0x10
+#define SAMPLE_TIME 20 // ms
+
+// --- VARIABLES ---
+volatile long encoderCount = 0;
+long lastEncoderCount = 0;
+
+float currentSpeed = 0; // Ticks per SAMPLE_TIME
+float targetValue = 0;  // Bisa berupa Target Speed (PID) atau Target PWM (Manual)
+float pwmOutput = 0;
+
+// PID Variables
+float kp = 0.0, ki = 0.0, kd = 0.0;
+float error = 0, lastError = 0, integral = 0;
+
+// System Mode
+// 0 = PID Mode (Target = Speed)
+// 1 = Manual/Calibration Mode (Target = PWM -255 to 255)
+int mode = 0; 
+
+unsigned long lastTime = 0;
+
+// Data to send
+struct DataPacket {
+  float speed;  // Kecepatan (Ticks per 20ms)
+  long pos;     // Posisi Encoder Total
+} sendData;
 
 void setup() {
-  pinMode(MOTOR1_PWMA, OUTPUT);
-  pinMode(MOTOR1_PWMB, OUTPUT);
+  pinMode(MOTOR_A, OUTPUT);
+  pinMode(MOTOR_B, OUTPUT);
   stopMotor();
-  setupEncoderTim4();
+
+  // --- SETUP ENCODER TIM4 (DIRECT REGISTER) ---
+  RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+  pinMode(PB6, INPUT_PULLUP);
+  pinMode(PB7, INPUT_PULLUP);
+  TIM4->PSC = 0;
+  TIM4->ARR = 0xFFFF;
+  TIM4->CCMR1 = 0x0101; 
+  TIM4->SMCR = 0x0003; // Encoder Mode 3
+  TIM4->CNT = 0;
+  TIM4->CR1 |= 1;      // Enable
+
+  // --- SETUP I2C ---
   Wire.setSDA(PB11);
   Wire.setSCL(PB10);
-  Wire.begin(0x10); // Address 0x10
+  Wire.begin(SLAVE_ADDR);
   Wire.onReceive(receiveEvent);
   Wire.onRequest(requestEvent);
 }
 
 void loop() {
   unsigned long now = millis();
-  if (now - lastTime >= sampleTime) {
+  
+  if (now - lastTime >= SAMPLE_TIME) {
+    // 1. BACA ENCODER
     int16_t count = TIM4->CNT; 
-    TIM4->CNT = 0;
-    long delta = count;
+    TIM4->CNT = 0; 
+    long delta = count; // Handle overflow otomatis krn int16_t
+    
+    encoderCount += delta;       // Posisi Total (Untuk Cek PPR)
+    currentSpeed = (float)delta; // Kecepatan (Ticks per 20ms)
 
-    encoderCount += delta; 
-    input = (float)delta;  
-    float error = setpoint - input;
-    if (abs(output) < 255) {
-       integral += (error);
+    // 2. KONTROL MOTOR
+    if (mode == 1) { 
+      // --- MODE MANUAL (Untuk Cek Max RPM & Arah) ---
+      pwmOutput = targetValue; // Target dianggap PWM langsung
+    } 
+    else {
+      // --- MODE PID (Untuk Tuning) ---
+      error = targetValue - currentSpeed;
+      
+      // Anti-windup
+      if (abs(pwmOutput) < 255) integral += error;
+      
+      float derivative = error - lastError;
+      pwmOutput = (kp * error) + (ki * integral) + (kd * derivative);
+      lastError = error;
     }
-    if(integral > 2000) integral = 2000;
-    if(integral < -2000) integral = -2000;
-    float derivative = (error - lastError);
-    output = (kp * error) + (ki * integral) + (kd * derivative);
-    lastError = error
-    setMotorSpeed(output);
+
+    // 3. EKSEKUSI KE DRIVER
+    setMotor(pwmOutput);
+    
+    // 4. PREPARE DATA
+    sendData.speed = currentSpeed;
+    sendData.pos = encoderCount;
+    
     lastTime = now;
-    sendData.rpm = input; 
-    sendData.enc = encoderCount;
   }
 }
 
-void setupEncoderTim4() {
-  // 1. Enable Clock untuk TIM4 (Bit 2 di APB1ENR)
-  // RCC->APB1ENR |= 0x00000004; // Versi Hardcode
-  RCC->APB1ENR |= RCC_APB1ENR_TIM4EN; // Versi Macro CMSIS (Lebih aman)
-  pinMode(PB6, INPUT);
-  pinMode(PB7, INPUT);
-  TIM4->CR1 = 0;       // Matikan Timer dulu untuk setting
-  TIM4->PSC = 0;       // Prescaler 0 (Hitung setiap tick)
-  TIM4->ARR = 0xFFFF;  // Auto Reload Register (Max 16 bit)
+void setMotor(float pwm) {
+  int p = (int)constrain(pwm, -255, 255);
   
-  // Set CCMR1 (Capture/Compare Mode Register)
-  // Kita set CC1S = 01 (Input TI1) dan CC2S = 01 (Input TI2)
-  // 0x0101 dalam hex = biner ...0000 0001 0000 0001
-  TIM4->CCMR1 = 0x0101; 
-  
-  // Set SMCR (Slave Mode Control Register)
-  // SMS (Slave Mode Selection) bit 0-2 di set ke 011 (Encoder Mode 3)
-  TIM4->SMCR = 0x0003; 
-  
-  // 4. Reset dan Enable Timer
-  TIM4->CNT = 0;
-  TIM4->CR1 |= 1; // Set Bit 0 (CEN - Counter Enable)
-}
-
-void setMotorSpeed(float pwmVal) {
-  int pwm = (int)pwmVal;
-  
-  if (pwm > 255) pwm = 255;
-  if (pwm < -255) pwm = -255;
-
-  if (pwm > 0) {
-    analogWrite(MOTOR1_PWMA, pwm);
-    analogWrite(MOTOR1_PWMB, 0);
-  } else if (pwm < 0) {
-    analogWrite(MOTOR1_PWMA, 0);
-    analogWrite(MOTOR1_PWMB, abs(pwm));
+  if (p > 0) {
+    analogWrite(MOTOR_A, p);
+    analogWrite(MOTOR_B, 0);
+  } else if (p < 0) {
+    analogWrite(MOTOR_A, 0);
+    analogWrite(MOTOR_B, abs(p));
   } else {
     stopMotor();
   }
 }
 
 void stopMotor() {
-  analogWrite(MOTOR1_PWMA, 0);
-  analogWrite(MOTOR1_PWMB, 0);
+  analogWrite(MOTOR_A, 0);
+  analogWrite(MOTOR_B, 0);
 }
 
+// Format Perintah I2C: [Char Command] [Float Value]
+// P=Kp, I=Ki, D=Kd, S=Setpoint/Target, M=Mode, R=Reset
 void receiveEvent(int howMany) {
-  if (Wire.available() >= 5) { 
+  if (Wire.available() >= 5) {
     char cmd = Wire.read();
     union { byte b[4]; float f; } data;
     for(int i=0; i<4; i++) data.b[i] = Wire.read();
 
-    switch(cmd) {
+    switch(toupper(cmd)) {
       case 'P': kp = data.f; break;
       case 'I': ki = data.f; break;
       case 'D': kd = data.f; break;
-      case 'S': setpoint = data.f; break; 
-      case 'R': encoderCount = 0; break;  
+      case 'S': targetValue = data.f; break;
+      case 'M': mode = (int)data.f; targetValue=0; integral=0; break; // Ganti Mode
+      case 'R': encoderCount = 0; break; // Reset Posisi
     }
   }
 }
