@@ -177,7 +177,7 @@ graph TD
 - #define ENC2_B PB_8   // Timer 3 Channel 2
 
 ---
-Motor DC FR
+***Motor DC FR***
 +---------------------------+-----------+--------------+-------+
 | Parameter                 | Simbol    | Satuan       | Nilai |
 +---------------------------+-----------+--------------+-------+
@@ -192,3 +192,4 @@ Motor DC FR
 | Arah Terbalik?            | Dir_Inv   | True/False   |       |
 | Filter Encoder            | Alpha     | Konstanta    |       |
 +---------------------------+-----------+--------------+-------+
+---
