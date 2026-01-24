@@ -177,19 +177,31 @@ graph TD
 - #define ENC2_B PB_8   // Timer 3 Channel 2
 
 ---
-***Motor DC FR***
-+---------------------------+-----------+--------------+-------+
-| Parameter                 | Simbol    | Satuan       | Nilai |
-+---------------------------+-----------+--------------+-------+
-| Resolusi Encoder          | PPR       | Pulses       |       |
-| PWM Deadzone (Maju)       | MinPWM+   | 0-255        |       |
-| PWM Deadzone (Mundur)     | MinPWM-   | 0-255        |       |
-| Max Speed (Raw)           | MaxTick   | Ticks/20ms   |       |
-| Max Speed (Real)          | MaxRPM    | RPM          |       |
-| Proportional              | Kp        | Konstanta    |       |
-| Integral                  | Ki        | Konstanta    |       |
-| Derivative                | Kd        | Konstanta    |       |
-| Arah Terbalik?            | Dir_Inv   | True/False   |       |
-| Filter Encoder            | Alpha     | Konstanta    |       |
-+---------------------------+-----------+--------------+-------+
 ---
+									
+		Motor DC FR					Motor DC FL		
+	Parameter	Simbol	Satuan	Nilai		Parameter	Simbol	Satuan	Nilai
+	Resolusi Encoder	PPR	Pulses			Resolusi Encoder	PPR	Pulses	
+	PWM Deadzone (Maju)	MinPWM+	0-255			PWM Deadzone (Maju)	MinPWM+	0-255	
+	PWM Deadzone (Mundur)	MinPWM-	0-255			PWM Deadzone (Mundur)	MinPWM-	0-255	
+	Max Speed (Raw)	MaxTick	Ticks/20ms			Max Speed (Raw)	MaxTick	Ticks/20ms	
+	Max Speed (Real)	MaxRPM	RPM			Max Speed (Real)	MaxRPM	RPM	
+	Proportional	Kp	Konstanta			Proportional	Kp	Konstanta	
+	Integral	Ki	Konstanta			Integral	Ki	Konstanta	
+	Derivative	Kd	Konstanta			Derivative	Kd	Konstanta	
+	Arah Terbalik?	Dir_Inv	True/False			Arah Terbalik?	Dir_Inv	True/False	
+	Filter Encoder	Alpha	Konstanta			Filter Encoder	Alpha	Konstanta	
+									
+		Motor DC RR					Motor DC RL		
+	Parameter	Simbol	Satuan	Nilai		Parameter	Simbol	Satuan	Nilai
+	Resolusi Encoder	PPR	Pulses			Resolusi Encoder	PPR	Pulses	
+	PWM Deadzone (Maju)	MinPWM+	0-255			PWM Deadzone (Maju)	MinPWM+	0-255	
+	PWM Deadzone (Mundur)	MinPWM-	0-255			PWM Deadzone (Mundur)	MinPWM-	0-255	
+	Max Speed (Raw)	MaxTick	Ticks/20ms			Max Speed (Raw)	MaxTick	Ticks/20ms	
+	Max Speed (Real)	MaxRPM	RPM			Max Speed (Real)	MaxRPM	RPM	
+	Proportional	Kp	Konstanta			Proportional	Kp	Konstanta	
+	Integral	Ki	Konstanta			Integral	Ki	Konstanta	
+	Derivative	Kd	Konstanta			Derivative	Kd	Konstanta	
+	Arah Terbalik?	Dir_Inv	True/False			Arah Terbalik?	Dir_Inv	True/False	
+	Filter Encoder	Alpha	Konstanta			Filter Encoder	Alpha	Konstanta	
+<img width="1140" height="633" alt="image" src="https://github.com/user-attachments/assets/54859095-ac7d-4b08-a4f4-b6827dc241f9" />
