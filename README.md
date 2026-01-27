@@ -165,16 +165,16 @@ graph TD
 
 ## PINOUT
 **Motor 1 (FL di Slave 1, RL di Slave 2) Steering**
-- #define MOTOR1_PWMA PA_6
-- #define MOTOR1_PWMB PA_7
-- #define ENC1_A PB_7   // Timer 2 Channel 1
-- #define ENC1_B PB_6  // Timer 2 Channel 2
+- #define MOTOR1_PWMA PA6
+- #define MOTOR1_PWMB PA7
+- #define ENC1_A PB7   // Timer 2 Channel 1
+- #define ENC1_B PB6  // Timer 2 Channel 2
 
 **Motor 2 (FR di Slave 1, RR di Slave 2) Manuver**
-- #define MOTOR2_PWMA PA_1
--  #define MOTOR2_PWMB PA_3
-- #define ENC2_A PB_9   // Timer 3 Channel 1
-- #define ENC2_B PB_8   // Timer 3 Channel 2
+- #define MOTOR2_PWMA PA1
+-  #define MOTOR2_PWMB PA3
+- #define ENC2_A PB9   // Timer 3 Channel 1
+- #define ENC2_B PB8   // Timer 3 Channel 2
 
 ---
 <table width="100%" cellspacing="0" cellpadding="6" border="1"> <tr> <td width="50%"> <table width="100%" cellspacing="0" cellpadding="6" border="1"> <tr style="background-color:#70AD47; color:white; font-weight:bold; text-align:center;"> <td colspan="4">Motor DC FR</td> </tr> <tr style="background-color:#A9D08E; font-weight:bold;"> <td>Parameter</td><td>Simbol</td><td>Satuan</td><td>Nilai</td> </tr> <tr><td>Resolusi Encoder</td><td>PPR</td><td>Pulses</td><td>0</td></tr> <tr><td>PWM Deadzone (Maju)</td><td>MinPWM+</td><td>0-255</td><td>0</td></tr> <tr><td>PWM Deadzone (Mundur)</td><td>MinPWM-</td><td>0-255</td><td>0</td></tr> <tr><td>Max Speed (Raw)</td><td>MaxTick</td><td>Ticks/20ms</td><td>0</td></tr> <tr><td>Max Speed (Real)</td><td>MaxRPM</td><td>RPM</td><td>0</td></tr> <tr><td>Proportional</td><td>Kp</td><td>Konstanta</td><td>0</td></tr> <tr><td>Integral</td><td>Ki</td><td>Konstanta</td><td>0</td></tr> <tr><td>Derivative</td><td>Kd</td><td>Konstanta</td><td>0</td></tr> <tr><td>Arah Terbalik?</td><td>Dir_Inv</td><td>True/False</td><td>False</td></tr> <tr><td>Filter Encoder</td><td>Alpha</td><td>Konstanta</td><td>0</td></tr> </table> </td> <td width="50%"> <table width="100%" cellspacing="0" cellpadding="6" border="1"> <tr style="background-color:#70AD47; color:white; font-weight:bold; text-align:center;"> <td colspan="4">Motor DC FL</td> </tr> <tr style="background-color:#A9D08E; font-weight:bold;"> <td>Parameter</td><td>Simbol</td><td>Satuan</td><td>Nilai</td> </tr> <tr><td>Resolusi Encoder</td><td>PPR</td><td>Pulses</td><td>0</td></tr> <tr><td>PWM Deadzone (Maju)</td><td>MinPWM+</td><td>0-255</td><td>0</td></tr> <tr><td>PWM Deadzone (Mundur)</td><td>MinPWM-</td><td>0-255</td><td>0</td></tr> <tr><td>Max Speed (Raw)</td><td>MaxTick</td><td>Ticks/20ms</td><td>0</td></tr> <tr><td>Max Speed (Real)</td><td>MaxRPM</td><td>RPM</td><td>0</td></tr> <tr><td>Proportional</td><td>Kp</td><td>Konstanta</td><td>0</td></tr> <tr><td>Integral</td><td>Ki</td><td>Konstanta</td><td>0</td></tr> <tr><td>Derivative</td><td>Kd</td><td>Konstanta</td><td>0</td></tr> <tr><td>Arah Terbalik?</td><td>Dir_Inv</td><td>True/False</td><td>False</td></tr> <tr><td>Filter Encoder</td><td>Alpha</td><td>Konstanta</td><td>0</td></tr> </table> </td> </tr> </table>
